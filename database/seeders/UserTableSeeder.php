@@ -20,12 +20,14 @@ class UserTableSeeder extends Seeder
             [
                 'name' => 'Member',
                 'email' => 'member@email.com',
+                'phone' => '6412339444',
                 'role' => 'member',
                 'password' => Hash::make('123')
             ],
             [
                 'name' => 'Instructor',
                 'email' => 'instructor@email.com',
+                'phone' => '64123323444',
                 'role' => 'instructor',
                 'password' => Hash::make('123')
             ],

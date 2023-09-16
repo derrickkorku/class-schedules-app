@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Observers\BookingObserver;
 use Jenssegers\Mongodb\Eloquent\Builder;
 use Jenssegers\Mongodb\Eloquent\Model;
 
@@ -22,7 +23,7 @@ class Booking extends Model
                 'id' => $courseSchedule->id,
                 'course' => $courseSchedule->course,
                 'instructor' => $courseSchedule->instructor,
-                'date_time' => $courseSchedule->date_time->format('Y-m-d H:i:s')
+                'date_time' => $courseSchedule->date_time->format('Y-m-d H:i:s'),
             ],
             'member' => [
                 'id' => $member->id,

@@ -25,6 +25,11 @@ class BookingController extends Controller
             );
     }
 
+    /**
+     * @param BookingRequest $request
+     * @return \Illuminate\Http\RedirectResponse
+     * @observer BookingObserver@created
+     */
     public function store(BookingRequest $request) {
         Booking::createFromCourseScheduleId($request->course_schedule_id);
 
@@ -32,6 +37,11 @@ class BookingController extends Controller
             ->with('success', 'Booking created successful');
     }
 
+    /**
+     * @param Booking $booking
+     * @return \Illuminate\Http\RedirectResponse
+     * @observer BookingObserver@deleted
+     */
     public function destroy(Booking $booking) {
         $booking->delete();
 
