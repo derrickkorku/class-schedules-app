@@ -8,7 +8,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 
-class SendCourseScheduleCancelledNotification extends Notification
+class SendCourseScheduleCancelledNotification extends Notification implements ShouldQueue
 {
     use Queueable;
 
@@ -39,10 +39,9 @@ class SendCourseScheduleCancelledNotification extends Notification
     public function toMail($notifiable)
     {
         return (new MailMessage)
-            ->subject('Sorry, your class was canceled')
+            ->subject('Cancelled Course')
             ->greeting('Hey '. $notifiable->name)
-            ->line('Sorry to inform you that your ' . $this->courseSchedule. ' class was canceled by the instructor. View the schedule and book another class')
-            ->action('Book a class', url('/member/book'))
+            ->line('Your course,' . $this->courseSchedule->course['name']. ' cancelled successfully')
             ->line('Thank you for using our application!');
     }
 

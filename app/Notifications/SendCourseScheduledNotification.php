@@ -8,7 +8,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 
-class SendCourseScheduledNotification extends Notification
+class SendCourseScheduledNotification extends Notification implements ShouldQueue
 {
     use Queueable;
 
@@ -41,8 +41,7 @@ class SendCourseScheduledNotification extends Notification
         return (new MailMessage)
             ->subject('Hi, you have a scheduled course')
             ->greeting('Hey '. $notifiable->name)
-            ->line('You have a scheduled course, ' . $this->courseSchedule. '.')
-            ->action('Book a class', url('/member/book'))
+            ->line('You have a scheduled course, ' . $this->courseSchedule->course['name']. '.')
             ->line('Thank you for using our application!');
     }
 

@@ -2,6 +2,9 @@
 
 namespace App\Jobs;
 
+use App\Listeners\SendCourseScheduledNotification;
+use App\Models\CourseSchedule;
+use App\Models\User;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldBeUnique;
 use Illuminate\Contracts\Queue\ShouldQueue;
@@ -18,7 +21,7 @@ class CourseScheduleNotificationJob implements ShouldQueue
      *
      * @return void
      */
-    public function __construct()
+    public function __construct(private User $user, private CourseSchedule $courseSchedule)
     {
         //
     }
@@ -30,6 +33,8 @@ class CourseScheduleNotificationJob implements ShouldQueue
      */
     public function handle()
     {
-        //
+        $this->user->notify(
+            new SendCourseScheduledNotification($this->courseSchedule)
+        );
     }
 }

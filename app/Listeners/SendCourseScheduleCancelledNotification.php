@@ -27,6 +27,6 @@ class SendCourseScheduleCancelledNotification
      */
     public function handle(CourseScheduleCancelled $event)
     {
-        CourseScheduleCancelledNotificationJob::dispatch($event->courseSchedule);
+        CourseScheduleCancelledNotificationJob::dispatch(auth()->user(), $event->courseSchedule);
     }
 }

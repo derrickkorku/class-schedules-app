@@ -3,10 +3,10 @@
 namespace App\Providers;
 
 use App\Events\CourseScheduleCancelled;
+use App\Events\CourseScheduled;
 use App\Listeners\SendCourseScheduleCancelledNotification;
 use App\Listeners\SendCourseScheduledNotification;
 use App\Models\Booking;
-use App\Models\CourseSchedule;
 use App\Observers\BookingObserver;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
@@ -24,7 +24,7 @@ class EventServiceProvider extends ServiceProvider
         Registered::class => [
             SendEmailVerificationNotification::class,
         ],
-        CourseSchedule::class => [
+        CourseScheduled::class => [
             SendCourseScheduledNotification::class
         ],
         CourseScheduleCancelled::class => [

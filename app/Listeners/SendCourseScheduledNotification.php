@@ -6,6 +6,7 @@ use App\Events\CourseScheduled;
 use App\Jobs\CourseScheduleNotificationJob;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Queue\InteractsWithQueue;
+use Illuminate\Support\Facades\Log;
 
 class SendCourseScheduledNotification
 {
@@ -27,6 +28,6 @@ class SendCourseScheduledNotification
      */
     public function handle(CourseScheduled $event)
     {
-        CourseScheduleNotificationJob::dispatch($event->courseSchedule);
+        CourseScheduleNotificationJob::dispatch(auth()->user(), $event->courseSchedule);
     }
 }
