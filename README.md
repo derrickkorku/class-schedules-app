@@ -1,6 +1,6 @@
 # Introduction
 This repo is a proof of concept application to demonstrate using MongoDB with Laravel 9 
-by the help of Jessengers Laravel MongoDB package 3.9. The application built is a 
+by the help of Jessengers Laravel MongoDB package 3.9 - https://github.com/mongodb/laravel-mongodb. The application built is a 
 Course Scheduling and Booking application. It maintains two user roles, instructor & member.
 
 # Installing & Running
