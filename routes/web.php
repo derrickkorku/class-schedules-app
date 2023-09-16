@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\BookingController;
 use App\Http\Controllers\CourseScheduleController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
@@ -23,9 +24,15 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
-
+/* Instructor Endpoints */
 Route::resource('schedule', CourseScheduleController::class)
-    ->only('index','create', 'store', 'destroy');
+    ->only('index','create', 'store', 'destroy')
+    ->middleware(['auth', 'role:instructor']);
+
+/* Member Endpoints */
+Route::resource('booking', BookingController::class)
+    ->only('index', 'create', 'store', 'destroy')
+    ->middleware(['auth', 'role:member']);
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

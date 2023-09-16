@@ -18,6 +18,14 @@ class CourseSchedule extends Model
         return $query->where('date_time', '>', now());
     }
 
+    public function scopeNotBooked(Builder $query): Builder {
+        return $query->whereNotIn('course.name', $this->getBookedIds());
+    }
+
+    private function getBookedIds(): array {
+        return Booking::pluck('course_schedule.course.name')->toArray();
+    }
+
     public function scopeInstructorScheduledCourses(Builder $query): Builder
     {
         return $query->where('instructor.email', auth()->user()->email);

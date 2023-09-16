@@ -16,8 +16,7 @@ class CourseScheduleRepository
 
     public function getNotBookedUpcomingCourseSchedules(){
         return CourseSchedule::upcoming()
-            ->notBooked()
-            ->oldest('date_time')->get();
+            ->notBooked()->oldest('date_time')->get();
     }
 
 
@@ -51,7 +50,8 @@ class CourseScheduleRepository
             'course' => [
                 'id' => $course->id,
                 'name' => $course->name,
-                'minutes' => $course->minutes
+                'minutes' => $course->minutes,
+                'description' => $course->description
             ]
         ]);
     }
