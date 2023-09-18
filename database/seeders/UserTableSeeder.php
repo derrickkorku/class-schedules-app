@@ -27,10 +27,10 @@ class UserTableSeeder extends Seeder
             [
                 'name' => 'Instructor',
                 'email' => 'instructor@email.com',
-                'phone' => '64123323444',
+                'phone' => '6412332322',
                 'role' => 'instructor',
                 'password' => Hash::make('123')
-            ],
+            ]
         ]);
     }
 }

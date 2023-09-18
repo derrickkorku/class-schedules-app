@@ -30,4 +30,24 @@ class CourseSchedule extends Model
     {
         return $query->where('instructor.email', auth()->user()->email);
     }
+
+    /**
+     * @param string $courseId
+     * @param $dateTime
+     * @return bool
+     */
+    public function updateFromCourseId(string $courseId, $dateTime): bool
+    {
+        $course = Course::find($courseId);
+
+        $this->date_time = $dateTime;
+        $this->course = [
+            'id' => $course->id,
+            'name' => $course->name,
+            'minutes' => $course->minutes,
+            'description' => $course->description
+        ];
+
+        return $this->save();
+    }
 }

@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->json('instructor');
             $table->json('course');
-            $table->datetime('date_time')->unique();
+            $table->datetime('date_time');
             $table->timestamps();
         });
     }

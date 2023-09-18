@@ -26,4 +26,9 @@ class CourseSchedulePolicy
         return $user->id === $courseSchedule->instructor['id']
             && $courseSchedule->date_time > now()->addHours(5);
     }
+
+    public function edit(User $user, CourseSchedule $courseSchedule): bool
+    {
+        return $user->id === $courseSchedule->instructor['id'];
+    }
 }

@@ -26,7 +26,7 @@ Route::get('/dashboard', function () {
 
 /* Instructor Endpoints */
 Route::resource('schedule', CourseScheduleController::class)
-    ->only('index','create', 'store', 'destroy')
+    ->only('index','create', 'store', 'destroy', 'edit', 'update')
     ->middleware(['auth', 'role:instructor']);
 
 /* Member Endpoints */

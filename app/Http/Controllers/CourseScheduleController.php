@@ -54,6 +54,30 @@ class CourseScheduleController extends Controller
            ->with('success', 'Course Schedule added successfully');
     }
 
+    public function edit($id){
+        $schedule = CourseSchedule::find($id);
+
+        if(auth()->user()->cannot('edit', $schedule)) {
+            abort(403);
+        }
+
+        $courses = Course::all();
+
+        return view('instructor.edit-scheduled-course')
+            ->with(compact('schedule', 'courses'));
+    }
+
+    public function update(CourseScheduleRequest $request, CourseSchedule $schedule){
+        if(auth()->user()->cannot('edit', $schedule)) {
+            abort(403);
+        }
+
+        $schedule->updateFromCourseId($request->course_id, $request->date_time);
+
+        return to_route('schedule.index')
+            ->with('success', 'Update successful');
+    }
+
     /**
      * Remove the specified resource from storage.
      */

@@ -25,7 +25,7 @@ class CourseScheduleRequest extends FormRequest
     {
         return [
             'course_id' => 'required',
-            'date_time' => 'required|unique:course_schedules,date_time|after:now'
+            'date_time' => 'required'
         ];
     }
 

@@ -38,6 +38,11 @@
                                     </form>
                                 </div>
                             @endcan
+                            @can('edit', $class)
+                                <div class="mt-1 text-right">
+                                    <a href="{{ route('schedule.edit', $class) }}" class="btn-link ml-auto">{{ __("Edit") }}</a>
+                                </div>
+                            @endcan
                         </div>
                     @empty
                         <div>
